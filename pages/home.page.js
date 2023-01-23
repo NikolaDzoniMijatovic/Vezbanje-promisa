@@ -9,8 +9,8 @@ module.exports = class HomePage {
     }
 
     // prvo uzimam ceo div jer se u njemu nalazi dropdown i stavljamo parametar title koji ce da trazi tekst
-    getPackageDiv(title) {
-      const xpathPackage = `//h3[contains(text(), "${title}")]/ancestor::div[contains(@class, "panel")]`;
+    getPackageDiv() {
+      const xpathPackage = '//h3[contains(text(), "starter")]/ancestor::div[contains(@class, "panel")]';
       return this.#driver.findElement(By.xpath(xpathPackage)); // prvo smo smestili xpath u promenljivu xpathPackage a zatim nasli taj element i u paramteru stavili xpathPackage
     }
 
@@ -20,6 +20,10 @@ module.exports = class HomePage {
 
     getQuantityOptions(quantityDropdown) {  // ovde zelimo da uzmemo svaku od opcija
       return quantityDropdown.findElements(By.css('option'));
+    }
+
+    getOrderButton(packageDiv) {
+      return packageDiv.findElement(By.className('btn btn-primary'));
     }
 
   }
